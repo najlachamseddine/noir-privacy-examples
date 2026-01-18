@@ -1,0 +1,36 @@
+# Dependencies
+target/
+node_modules/
+out/
+cache/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# State files (contain sensitive data)
+private_state.json
+*.state.json
+
+# Compiled artifacts
+circuits/*/target/
+contracts/out/
+contracts/cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Test artifacts
+coverage/
