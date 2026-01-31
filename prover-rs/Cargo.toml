@@ -1,0 +1,34 @@
+[package]
+name = "prover-rs"
+version = "0.1.0"
+edition = "2021"
+description = "Rust prover for Noir circuits using Barretenberg"
+
+[dependencies]
+# Noir proving from git (matching 1.0.0-beta.15)
+noirc_abi = { git = "https://github.com/noir-lang/noir", tag = "v1.0.0-beta.15" }
+acvm = { git = "https://github.com/noir-lang/noir", tag = "v1.0.0-beta.15" }
+bn254_blackbox_solver = { git = "https://github.com/noir-lang/noir", tag = "v1.0.0-beta.15" }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Compression
+flate2 = "1.0"
+
+# Error handling
+anyhow = "1.0"
+
+# Hex encoding
+hex = "0.4"
+
+# Base64 encoding
+base64 = "0.22"
+
+# CLI
+clap = { version = "4.4", features = ["derive"] }
+
+# For calling bb subprocess
+which = "6.0"

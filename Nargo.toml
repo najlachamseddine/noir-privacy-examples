@@ -1,6 +1,6 @@
-[package]
-name = "noir_tests"
-type = "bin"
-authors = [""]
-
-[dependencies]
+[workspace]
+members = [
+    "circuits/mint",
+    "circuits/private_transfer"
+]
+default-member = "circuits/private_transfer"

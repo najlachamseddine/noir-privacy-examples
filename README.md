@@ -34,7 +34,7 @@ A privacy-preserving token system on Ethereum Sepolia using Zero-Knowledge Proof
 ## Project Structure
 
 ```
-noir_tests/
+noir-privacy-examples/
 ├── circuits/                    # Noir ZK circuits
 │   ├── private_transfer/       # Transfer proof circuit
 │   │   ├── src/main.nr

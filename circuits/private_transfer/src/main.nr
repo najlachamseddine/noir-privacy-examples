@@ -14,11 +14,11 @@ fn main(
     sender_nonce: Field,
     
     // Public inputs
-    pub input_commitment: Field,
-    pub output_commitment_sender: Field,
-    pub output_commitment_recipient: Field,
-    pub nullifier: Field,
-    pub new_nonce: Field
+    input_commitment: pub Field,
+    output_commitment_sender: pub Field,
+    output_commitment_recipient: pub Field,
+    nullifier: pub Field,
+    new_nonce: pub Field
 ) {
     // 1. Verify sender owns the input commitment
     // Commitment = Hash(address, balance, nonce)

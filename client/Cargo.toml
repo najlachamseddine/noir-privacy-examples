@@ -11,10 +11,14 @@ alloy = { version = "0.1", features = ["full"] }
 alloy-primitives = "0.7"
 alloy-sol-types = "0.7"
 
-# Noir proving
-noirc_abi = { path = "../../../noir/tooling/noirc_abi" }
-acvm = { path = "../../../noir/acvm-repo/acvm" }
-bn254_blackbox_solver = { path = "../../../noir/acvm-repo/bn254_blackbox_solver" }
+# Noir proving (using crates.io versions)
+noirc_abi = "1.0.0-beta.15"
+acvm = "1.0.0-beta.15"
+bn254_blackbox_solver = "1.0.0-beta.15"
+nargo = "1.0.0-beta.15"
+
+# Barretenberg backend
+acvm_backend_barretenberg = "1.0.0-beta.15"
 
 # Async runtime
 tokio = { version = "1.35", features = ["full"] }
