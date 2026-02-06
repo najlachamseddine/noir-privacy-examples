@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity >=0.8.21;
 
 import "forge-std/Script.sol";
-import "../src/UltraVerifier.sol";
+import {HonkVerifier} from "../src/HonkVerifier.sol";
 import "../src/PrivateToken.sol";
 
 contract DeployScript is Script {
@@ -11,15 +11,16 @@ contract DeployScript is Script {
         
         vm.startBroadcast(deployerPrivateKey);
         
-        // Deploy verifier contracts
-        // Note: In production, deploy the actual Noir-generated verifiers
-        UltraVerifier transferVerifier = new UltraVerifier();
-        console.log("Transfer Verifier deployed to:", address(transferVerifier));
+        // Deploy the Noir-generated HonkVerifier (real on-chain verifier)
+        // Using the same verifier for both mint and transfer for now
+        // Generate separate verifiers per circuit for production
+        HonkVerifier mintVerifier = new HonkVerifier();
+        console.log("Mint HonkVerifier deployed to:", address(mintVerifier));
         
-        UltraVerifier mintVerifier = new UltraVerifier();
-        console.log("Mint Verifier deployed to:", address(mintVerifier));
+        HonkVerifier transferVerifier = new HonkVerifier();
+        console.log("Transfer HonkVerifier deployed to:", address(transferVerifier));
         
-        // Deploy PrivateToken
+        // Deploy PrivateToken with real verifiers
         PrivateToken token = new PrivateToken(
             address(transferVerifier),
             address(mintVerifier)
@@ -31,9 +32,8 @@ contract DeployScript is Script {
         // Output deployment summary
         console.log("");
         console.log("=== Deployment Summary ===");
-        console.log("Network: Sepolia");
-        console.log("Transfer Verifier:", address(transferVerifier));
-        console.log("Mint Verifier:", address(mintVerifier));
+        console.log("Mint HonkVerifier:", address(mintVerifier));
+        console.log("Transfer HonkVerifier:", address(transferVerifier));
         console.log("Private Token:", address(token));
     }
 }

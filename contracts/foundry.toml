@@ -1,8 +1,8 @@
 [profile.default]
 src = "src"
 out = "out"
-libs = ["lib"]
-solc_version = "0.8.20"
+libs = ["lib", "../lib"]
+solc_version = "0.8.27"
 
 [rpc_endpoints]
 sepolia = "${SEPOLIA_RPC_URL}"

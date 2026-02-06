@@ -1,24 +1,17 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity >=0.8.21;
 
-/**
- * @title UltraVerifier
- * @dev Interface for the Noir-generated verifier contract
- * This will be replaced by the actual generated verifier
- */
-interface IUltraVerifier {
-    function verify(bytes calldata proof, bytes32[] calldata publicInputs) external view returns (bool);
-}
+import {IVerifier} from "./HonkVerifier.sol";
 
 /**
  * @title PrivateToken
  * @dev Privacy-preserving token with hidden balances and addresses
- * Uses Zero-Knowledge Proofs (Noir) to verify transactions
+ * Uses Zero-Knowledge Proofs (Noir/UltraHonk) to verify transactions on-chain
  */
 contract PrivateToken {
     // Verifier contracts for different proof types
-    IUltraVerifier public transferVerifier;
-    IUltraVerifier public mintVerifier;
+    IVerifier public transferVerifier;
+    IVerifier public mintVerifier;
     
     // Owner for admin functions
     address public owner;
@@ -58,8 +51,8 @@ contract PrivateToken {
     
     constructor(address _transferVerifier, address _mintVerifier) {
         owner = msg.sender;
-        transferVerifier = IUltraVerifier(_transferVerifier);
-        mintVerifier = IUltraVerifier(_mintVerifier);
+        transferVerifier = IVerifier(_transferVerifier);
+        mintVerifier = IVerifier(_mintVerifier);
     }
     
     /**
@@ -67,13 +60,13 @@ contract PrivateToken {
      */
     function setTransferVerifier(address _verifier) external onlyOwner {
         if (_verifier == address(0)) revert ZeroAddress();
-        transferVerifier = IUltraVerifier(_verifier);
+        transferVerifier = IVerifier(_verifier);
         emit VerifierUpdated("transfer", _verifier);
     }
     
     function setMintVerifier(address _verifier) external onlyOwner {
         if (_verifier == address(0)) revert ZeroAddress();
-        mintVerifier = IUltraVerifier(_verifier);
+        mintVerifier = IVerifier(_verifier);
         emit VerifierUpdated("mint", _verifier);
     }
     

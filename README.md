@@ -83,6 +83,7 @@ noir-privacy-examples/
 # Compile transfer circuit
 cd circuits/private_transfer
 nargo compile
+nargo compile --package private_transfer
 
 # Compile mint circuit
 cd ../mint
@@ -263,3 +264,8 @@ cargo test
 ## License
 
 MIT
+
+
+Generate a proof: nargo prove - Creates a ZK proof using witness values from Prover.toml
+Verify a proof: nargo verify - Checks if a proof is valid
+Generate a Solidity verifier: nargo codegen-verifier - Creates a smart contract that can verify proofs on-chain
